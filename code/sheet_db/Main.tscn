@@ -1,0 +1,139 @@
+[gd_scene load_steps=6 format=3 uid="uid://o2i0io4sp1an"]
+
+[ext_resource type="Script" path="res://code/sheet_db/Game.gd" id="1_h830m"]
+[ext_resource type="Script" path="res://code/sheet_db/LoadingLabel.gd" id="2_mll0a"]
+[ext_resource type="Script" path="res://code/sheet_db/DB.gd" id="2_n80vb"]
+[ext_resource type="Script" path="res://code/sheet_db/LocalStorage.gd" id="3_unvnn"]
+[ext_resource type="Script" path="res://code/sheet_db/Transformer.gd" id="4_y30lx"]
+
+[node name="Game" type="CanvasLayer"]
+script = ExtResource("1_h830m")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 12.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "data"
+
+[node name="EventLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -114.0
+offset_top = 16.0
+offset_right = 114.0
+offset_bottom = 58.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "event"
+horizontal_alignment = 1
+
+[node name="LoadingLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -21.0
+offset_right = 108.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "loading"
+script = ExtResource("2_mll0a")
+
+[node name="ClearData" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -156.0
+offset_top = -53.0
+offset_right = -8.0
+offset_bottom = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "delete local data"
+
+[node name="VersionLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -211.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 58.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 30
+text = "version"
+horizontal_alignment = 2
+
+[node name="UpdateButton" type="Button" parent="Control/VersionLabel"]
+visible = false
+layout_mode = 0
+offset_left = 79.0
+offset_top = 45.0
+offset_right = 210.0
+offset_bottom = 77.0
+text = "update"
+
+[node name="Error" type="ColorRect" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 0.298039)
+
+[node name="Label" type="Label" parent="Control/Error"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.905882, 0, 0, 1)
+text = "error"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DB" type="Node" parent="."]
+script = ExtResource("2_n80vb")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="DB"]
+
+[node name="LocalStorage" type="Node" parent="DB"]
+script = ExtResource("3_unvnn")
+
+[node name="Transformer" type="Node" parent="DB"]
+script = ExtResource("4_y30lx")
+
+[connection signal="pressed" from="Control/ClearData" to="." method="_on_clear_data_pressed"]
+[connection signal="pressed" from="Control/VersionLabel/UpdateButton" to="." method="_on_update_button_pressed"]
