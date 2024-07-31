@@ -5,6 +5,8 @@ var tick_count = 0
 
 func _ready():
 	timer = Timer.new()
+	timer.wait_time = 0.2
+	add_child(timer)
 	timer.timeout.connect(tick)
 
 

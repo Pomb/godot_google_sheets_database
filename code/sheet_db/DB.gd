@@ -23,7 +23,7 @@ func _ready():
 
 func _load_api_key():
 	var config = ConfigFile.new()
-	var err = config.load("res://SecretConfig.cfg")
+	var err = config.load("res://code/sheet_db/SecretConfig.cfg")
 	if err == OK:
 		err = _extract_config(config)
 		if err != OK:
@@ -45,7 +45,7 @@ func _extract_config(config):
 	return ERR_FILE_CORRUPT
 
 
-func check_or_download_latest():
+func initialize():
 	var err = _try_load_from_disk()
 	if err != OK:
 		push_warning('Failed to load from disk %s' % str(err))
@@ -57,6 +57,7 @@ func check_or_download_latest():
 func download_latest():
 	print("downloading latest data...")
 	_fetch(database_tab_id)
+
 
 func clear_data():
 	print("Clearing data...")

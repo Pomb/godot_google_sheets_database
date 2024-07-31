@@ -8,9 +8,6 @@ func save(content):
 		push_warning("Failed to save data")
 		return {'status': ERR_INVALID_DATA}
 		
-	print(typeof(content), TYPE_DICTIONARY)
-	assert(typeof(content) == TYPE_DICTIONARY)
-
 	# save data
 	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
 	file.store_var(content)

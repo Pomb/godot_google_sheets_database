@@ -26,8 +26,11 @@ func transform(data):
 					if key in ARRAY_KEYS:
 						result[id][key] = data[j][i].split(',')
 					else:
-						result[id][key] = data[j][i] or ''
+						var val = data[j][i]
+						result[id][key] = val
 				else:
 					push_warning("Index out of bounds for row %d, column %d" % [j, i])
-				
+	
+	#print(JSON.stringify(data, '\t'))
+	#print(JSON.stringify(result, '\t'))
 	return result

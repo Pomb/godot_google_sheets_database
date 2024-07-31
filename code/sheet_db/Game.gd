@@ -12,7 +12,7 @@ extends CanvasLayer
 
 func _ready():
 	db.on_event.connect(_on_event)
-	db.check_or_download_latest()
+	db.call_deferred("initialize")
 
 
 func _on_event(payload):
@@ -50,7 +50,7 @@ func _on_event(payload):
 
 
 func delayed_hide(target, duration = 3.0):
-	await get_tree().create_timer(duration)
+	await get_tree().create_timer(duration).timeout
 	target.hide()
 
 
