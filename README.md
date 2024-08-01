@@ -16,7 +16,7 @@ This is currently a oneway data source from Google Sheets into Godot, with local
 
 1. Duplicate the configuration file: `res://code/sheet_db/SecretConfigSample.cfg`
 2. Rename it to `SecretConfig.cfg`
-3. Setup a google api key `https://support.google.com/googleapi/answer/6158862?hl=en`
+3. [Setup a google api key](https://support.google.com/googleapi/answer/6158862?hl=en)
 4. Fill out the details from your google sheet
 
 ### Google sheet
